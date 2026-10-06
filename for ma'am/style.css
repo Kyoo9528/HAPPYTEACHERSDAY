@@ -1,0 +1,1013 @@
+/* =========================
+   BASIC RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 20% 20%, #ffd6e7 0%, transparent 25%),
+        radial-gradient(circle at 80% 30%, #f8c8dc 0%, transparent 25%),
+        radial-gradient(circle at 50% 90%, #ffddea 0%, transparent 30%),
+        linear-gradient(135deg, #fff0f6, #ffdce9, #ffeaf2);
+
+    color: #63384c;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   SCREEN SYSTEM
+========================= */
+
+.screen {
+    width: 100vw;
+    min-height: 100vh;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================
+   FLOWER BACKGROUND
+========================= */
+
+.flowers {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+.flowers span {
+    position: absolute;
+
+    font-size: 28px;
+
+    opacity: 0.35;
+
+    animation:
+        flowerFloat 7s ease-in-out infinite,
+        flowerRotate 10s linear infinite;
+}
+
+
+/* Different positions */
+
+.flowers span:nth-child(1) {
+    left: 5%;
+    top: 10%;
+    animation-delay: 0s;
+}
+
+.flowers span:nth-child(2) {
+    left: 18%;
+    top: 75%;
+    animation-delay: 1s;
+}
+
+.flowers span:nth-child(3) {
+    left: 32%;
+    top: 15%;
+    animation-delay: 2s;
+}
+
+.flowers span:nth-child(4) {
+    left: 48%;
+    top: 85%;
+    animation-delay: 3s;
+}
+
+.flowers span:nth-child(5) {
+    left: 63%;
+    top: 10%;
+    animation-delay: 1.5s;
+}
+
+.flowers span:nth-child(6) {
+    left: 78%;
+    top: 70%;
+    animation-delay: 2.5s;
+}
+
+.flowers span:nth-child(7) {
+    left: 92%;
+    top: 20%;
+    animation-delay: 4s;
+}
+
+.flowers span:nth-child(8) {
+    left: 12%;
+    top: 45%;
+    animation-delay: 2s;
+}
+
+.flowers span:nth-child(9) {
+    left: 88%;
+    top: 50%;
+    animation-delay: 3s;
+}
+
+.flowers span:nth-child(10) {
+    left: 40%;
+    top: 5%;
+    animation-delay: 4s;
+}
+
+.flowers span:nth-child(11) {
+    left: 72%;
+    top: 90%;
+    animation-delay: 1s;
+}
+
+.flowers span:nth-child(12) {
+    left: 55%;
+    top: 55%;
+    animation-delay: 2s;
+}
+
+
+@keyframes flowerFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes flowerRotate {
+
+    0% {
+        rotate: 0deg;
+    }
+
+    50% {
+        rotate: 8deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
+}
+
+
+/* =========================
+   INTRO SCREEN
+========================= */
+
+.intro-card {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(600px, 92vw);
+
+    padding: 55px 35px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 70px rgba(140, 70, 100, 0.18),
+        inset 0 0 40px rgba(255, 255, 255, 0.5);
+
+    backdrop-filter: blur(12px);
+
+    animation: introAppear 1.2s ease;
+}
+
+@keyframes introAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+.flower-decoration {
+    font-size: 30px;
+
+    margin-bottom: 20px;
+
+    animation: flowerBounce 2s ease-in-out infinite;
+}
+
+@keyframes flowerBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+.small-text {
+    color: #a85f7b;
+
+    font-size: 16px;
+
+    margin-bottom: 12px;
+}
+
+
+.intro-card h1 {
+    color: #9c456b;
+
+    font-size: clamp(32px, 6vw, 52px);
+
+    margin-bottom: 15px;
+}
+
+
+.intro-subtitle {
+    color: #805067;
+
+    font-size: 17px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+#startBtn {
+    padding: 15px 28px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #e889ae,
+        #d56d98
+    );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 10px 25px rgba(190, 80, 125, 0.25);
+}
+
+#startBtn:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 15px 30px rgba(190, 80, 125, 0.35);
+}
+
+
+/* =========================
+   ENVELOPE SCREEN
+========================= */
+
+.envelope-section {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    animation: envelopeAppear 1s ease;
+}
+
+@keyframes envelopeAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.envelope-section h1 {
+    color: #9c456b;
+
+    font-size: 42px;
+
+    margin-bottom: 8px;
+}
+
+
+.instruction {
+    color: #a85f7b;
+
+    margin-top: 8px;
+
+    margin-bottom: 35px;
+
+    animation: instructionFloat 2s ease-in-out infinite;
+}
+
+@keyframes instructionFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
+
+.envelope {
+    width: 320px;
+    height: 215px;
+
+    position: relative;
+
+    margin: auto;
+
+    cursor: pointer;
+
+    perspective: 1000px;
+
+    filter:
+        drop-shadow(
+            0 20px 35px rgba(150, 65, 100, 0.25)
+        );
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+
+.envelope:hover {
+    transform: translateY(-8px) scale(1.03);
+
+    filter:
+        drop-shadow(
+            0 25px 45px rgba(170, 75, 120, 0.35)
+        );
+}
+
+
+/* Envelope back */
+
+.envelope-back {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ed8fb2,
+            #d96d99
+        );
+
+    border-radius: 12px;
+
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,0.2),
+        0 15px 35px rgba(100,40,70,0.2);
+}
+
+
+/* Letter inside */
+
+.inside-letter {
+    position: absolute;
+
+    width: 285px;
+    height: 185px;
+
+    left: 17px;
+    bottom: 12px;
+
+    background: #fffafc;
+
+    color: #704357;
+
+    border-radius: 7px;
+
+    z-index: 2;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.12);
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.8s ease;
+}
+
+
+.inside-letter-content {
+    padding: 30px 20px;
+
+    text-align: center;
+}
+
+
+.inside-letter-content span {
+    font-size: 25px;
+}
+
+
+.inside-letter-content h2 {
+    color: #a04c70;
+
+    margin: 8px 0;
+}
+
+
+.inside-letter-content p {
+    font-size: 13px;
+
+    color: #946278;
+}
+
+
+/* Envelope front */
+
+.envelope-front {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dc729c,
+            #c95d89
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 3;
+
+    border-radius: 12px;
+}
+
+
+/* Envelope flap */
+
+.envelope-flap {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3a2bf,
+            #df7ca5
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 58%
+        );
+
+    transform-origin: top;
+
+    transition:
+        transform 1s cubic-bezier(.2,.8,.2,1);
+
+    z-index: 4;
+
+    border-radius: 12px;
+}
+
+
+/* Open animation */
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+
+    z-index: 1;
+}
+
+
+.envelope.open .inside-letter {
+    transform: translateY(-125px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.18);
+}
+
+
+.envelope.open {
+    filter:
+        drop-shadow(
+            0 0 30px rgba(235, 120, 170, 0.4)
+        );
+}
+
+
+/* =========================
+   LETTER SCREEN
+========================= */
+
+#letterScreen {
+    align-items: flex-start;
+
+    overflow-y: auto;
+
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+
+.letter-wrapper {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(700px, 94vw);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 22px;
+
+    animation: letterAppear 1s ease;
+}
+
+
+@keyframes letterAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo-frame {
+    position: relative;
+
+    width: min(330px, 85vw);
+
+    padding: 12px;
+
+    background: #fffafa;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 15px 35px rgba(120, 55, 80, 0.2);
+
+    transform: rotate(-2deg);
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.photo-frame:hover {
+    transform:
+        rotate(0deg)
+        scale(1.03);
+}
+
+
+.teacher-photo {
+    width: 100%;
+
+    height: 250px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 5px;
+}
+
+
+/* Tape */
+
+.photo-tape {
+    position: absolute;
+
+    top: -13px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        rotate(-2deg);
+
+    width: 100px;
+
+    height: 25px;
+
+    background: rgba(255, 213, 225, 0.85);
+
+    border-radius: 4px;
+
+    z-index: 5;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.12);
+}
+
+
+/* =========================
+   LETTER CARD
+========================= */
+
+.letter-card {
+    width: 100%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffafd,
+            #fff3f8
+        );
+
+    color: #684254;
+
+    border-radius: 22px;
+
+    padding: 40px 45px;
+
+    box-shadow:
+        0 25px 60px rgba(120, 55, 80, 0.2);
+
+    border:
+        1px solid rgba(210, 130, 160, 0.25);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Decorative circles */
+
+.letter-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background: #ffdce9;
+
+    top: -100px;
+    right: -80px;
+
+    opacity: 0.5;
+}
+
+
+.letter-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background: #ffe7f0;
+
+    bottom: -80px;
+    left: -70px;
+
+    opacity: 0.6;
+}
+
+
+.letter-decoration {
+    text-align: center;
+
+    font-size: 30px;
+
+    margin-bottom: 5px;
+}
+
+
+.letter-card h2 {
+    text-align: center;
+
+    color: #9b4b6f;
+
+    font-family:
+        "Georgia",
+        serif;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.letter-card h3 {
+    text-align: center;
+
+    color: #c15d86;
+
+    font-size: 18px;
+
+    margin-bottom: 28px;
+}
+
+
+.letter-text {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.letter-text p {
+    font-family:
+        "Georgia",
+        serif;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    margin-bottom: 18px;
+
+    text-align: left;
+}
+
+
+.special-message {
+    text-align: center !important;
+
+    color: #c65380;
+
+    font-weight: 700;
+
+    font-size: 19px !important;
+
+    margin-top: 25px;
+}
+
+
+.signature {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: right;
+
+    margin-top: 30px;
+
+    color: #8c536b;
+
+    font-family: Georgia, serif;
+}
+
+
+.signature strong {
+    color: #a84770;
+
+    font-size: 18px;
+}
+
+
+.bottom-flowers {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    font-size: 24px;
+
+    margin-top: 30px;
+
+    opacity: 0.8;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+        width: 100vw;
+
+        min-width: 0;
+
+        padding:
+            25px 15px;
+    }
+
+
+    .intro-card {
+        width: 100%;
+
+        padding:
+            45px 22px;
+    }
+
+
+    .intro-card h1 {
+        font-size: 34px;
+    }
+
+
+    .intro-subtitle {
+        font-size: 15px;
+
+        line-height: 1.5;
+    }
+
+
+    /* Envelope */
+
+    .envelope {
+        width: 285px;
+        height: 190px;
+    }
+
+
+    .inside-letter {
+        width: 255px;
+        height: 165px;
+
+        left: 15px;
+    }
+
+
+    .envelope.open .inside-letter {
+        transform:
+            translateY(-105px);
+    }
+
+
+    .envelope-section h1 {
+        font-size: 34px;
+    }
+
+
+    /* Letter */
+
+    #letterScreen {
+        padding:
+            35px 15px 50px;
+    }
+
+
+    .letter-wrapper {
+        width: 100%;
+    }
+
+
+    .photo-frame {
+        width: min(300px, 88vw);
+    }
+
+
+    .teacher-photo {
+        height: 220px;
+    }
+
+
+    .letter-card {
+        padding:
+            30px 22px;
+    }
+
+
+    .letter-card h2 {
+        font-size: 27px;
+    }
+
+
+    .letter-card h3 {
+        font-size: 16px;
+    }
+
+
+    .letter-text p {
+        font-size: 15px;
+
+        line-height: 1.75;
+    }
+
+
+    .signature {
+        font-size: 14px;
+    }
+
+
+    .flowers span {
+        font-size: 22px;
+
+        opacity: 0.25;
+    }
+
+}
